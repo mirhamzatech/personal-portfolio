@@ -1,0 +1,90 @@
+🚀 Portfolio Website Design Brief (Developer-Focused)
+Objective: Build a high-performance, visually striking portfolio showcasing technical prowess (React/Tailwind) and UI/UX sensibility with a premium soft-modern aesthetic.
+
+🎯 Core Requirements
+1. Hero Section
+
+Full-screen EDF7FE background with subtle gradient mesh.
+
+Typography: "Hi, I’m [Name]" in Pacifico (48px), tagline in Quicksand ("Crafting clean code & beautiful interfaces").
+
+CTAs: "View Projects" (#008BF9 solid button), "Hire Me" (#263959 outline).
+
+Animation: Gentle floating effect on scroll indicator (GSAP).
+
+2. About Me
+
+3-line bio max. (Quicksand, #696E77).
+
+Tech Stack: Animated SVG icons (React, Tailwind, Node, etc.) on hover (#36DB9F glow).
+
+Resume Button: Download PDF with download attribute (styled with #263959 + hover scale transform).
+
+3. Projects Showcase
+
+Filterable Grid: Tags like "All / React / WordPress" (#0F3567 pills).
+
+Cards:
+
+Overlay with #263959 (80% opacity) on hover.
+
+Tags as #008BF9 badges.
+
+"View Case Study" link (arrow icon with #36DB9F hover).
+
+Data: Mock with projects.json for React state management.
+
+4. Services
+
+4-column grid (mobile: 2-col). Each card:
+
+Icon (e.g., Figma logo for UI/UX).
+
+Title (Pacifico, #0F3567).
+
+1-line description (Quicksand).
+
+5. Testimonials
+
+Auto-rotating carousel (3s interval).
+
+Client logo + feedback (italic #696E77).
+
+Micro-interaction: Pause on hover.
+
+6. Contact Form
+
+Inputs with EDF7FE background, Quicksand labels.
+
+Submit button (#008BF9 → #0F3567 gradient on hover).
+
+Social icons (LinkedIn/GitHub) with color-swap animation.
+
+⚙️ Technical Execution
+Framework: Next.js (SSR + SEO).
+
+Styling: Tailwind with @layer for custom animations.
+
+Animations:
+
+Scroll-triggered fade-ins (GSAP ScrollTrigger).
+
+Hover effects using transition-transform and group-hover.
+
+Performance:
+
+next/image for optimized assets.
+
+Dynamic imports for heavy components (e.g., Testimonial carousel).
+
+Extras:
+
+Dark mode via next-themes (dark:#0F3567 background, light:EDF7FE).
+
+Project filtering with useState + array filter().
+
+✨ Deliverable
+A 98+ Lighthouse Score portfolio that:
+✅ Demonstrates React/Tailwind expertise.
+✅ Engages visitors with tasteful motion.
+✅ Converts clients via clear CTAs and trust signals.
