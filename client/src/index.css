@@ -218,10 +218,24 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-green), var(--primary-blue));
+    background-size: 200% 100%;
+    animation: gradientMove 3s ease infinite;
     z-index: 9999;
-    transition: width 0.3s ease;
+    width: 0%;
+    box-shadow: 0 0 10px rgba(0, 139, 249, 0.5);
+  }
+  
+  .progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+    animation: shimmer 2s ease-in-out infinite;
   }
 }
 
@@ -348,4 +362,61 @@
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+  100% { transform: translateY(0px) rotate(360deg); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 139, 249, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 139, 249, 0.6); }
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  33% { transform: translateY(-30px) translateX(20px) rotate(120deg); }
+  66% { transform: translateY(20px) translateX(-15px) rotate(240deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+}
+
+@keyframes magneticPull {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 10px rgba(0, 139, 249, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(0, 139, 249, 0.6), 0 0 30px rgba(0, 139, 249, 0.4); }
+}
+
+@keyframes slideInFromLeft {
+  0% { opacity: 0; transform: translateX(-100px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+  0% { opacity: 0; transform: translateX(100px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }

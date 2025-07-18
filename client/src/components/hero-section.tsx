@@ -10,7 +10,7 @@ export function HeroSection() {
   const fullText = "Crafting clean code & beautiful interfaces";
 
   useEffect(() => {
-    // Typing effect
+    // Typing effect with more realistic timing
     let index = 0;
     const typeTimer = setInterval(() => {
       if (index < fullText.length) {
@@ -19,73 +19,105 @@ export function HeroSection() {
       } else {
         clearInterval(typeTimer);
       }
-    }, 100);
+    }, 50);
 
-    // Scroll progress bar
+    // Enhanced scroll progress bar
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
+      const progress = Math.min((scrollTop / docHeight) * 100, 100);
       setScrollProgress(progress);
+      
+      // Update progress bar with smooth animation
+      gsap.to(".progress-bar", {
+        width: `${progress}%`,
+        duration: 0.1,
+        ease: "none"
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Hero animations with more sophisticated timeline
     const tl = gsap.timeline();
     tl.from("#hero-title", { 
       opacity: 0, 
-      y: 50, 
-      duration: 1.2, 
+      y: 60, 
+      scale: 0.8,
+      duration: 1.5, 
       ease: "power3.out",
-      delay: 0.3
+      delay: 0.5
     })
     .from("#hero-subtitle", { 
       opacity: 0, 
-      y: 30, 
-      duration: 1, 
+      y: 40, 
+      duration: 1.2, 
       ease: "power2.out" 
-    }, "-=0.7")
+    }, "-=0.8")
     .from("#hero-ctas", { 
       opacity: 0, 
-      y: 20, 
-      duration: 0.8, 
+      y: 30, 
+      scale: 0.9,
+      duration: 1, 
       ease: "power2.out" 
-    }, "-=0.5")
+    }, "-=0.6")
     .from(".floating-shape", {
       opacity: 0,
       scale: 0,
-      duration: 0.8,
+      rotation: 180,
+      duration: 1,
       ease: "back.out(1.7)",
-      stagger: 0.2
-    }, "-=0.5");
+      stagger: 0.3
+    }, "-=0.8");
 
-    // Enhanced floating shapes animation
+    // Enhanced floating shapes animation with more complex motion
     gsap.to(".floating-shape", {
-      y: -30,
-      x: 15,
+      y: -40,
+      x: 20,
       rotation: 360,
-      duration: 6,
+      duration: 8,
       ease: "power2.inOut",
       repeat: -1,
       yoyo: true,
-      stagger: 0.8
+      stagger: {
+        amount: 2,
+        from: "random"
+      }
     });
 
     // Parallax effect for shapes
     gsap.to(".floating-shape", {
-      y: -50,
+      y: -80,
       scrollTrigger: {
         trigger: ".hero-section",
         start: "top top",
         end: "bottom top",
-        scrub: 1
+        scrub: 1.5
       }
     });
+
+    // Add mouse parallax effect
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const x = (clientX / innerWidth - 0.5) * 20;
+      const y = (clientY / innerHeight - 0.5) * 20;
+      
+      gsap.to(".floating-shape", {
+        x: x,
+        y: y,
+        duration: 1,
+        ease: "power2.out",
+        stagger: 0.1
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       clearInterval(typeTimer);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
