@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Mail, Phone, MapPin, Send, CheckCircle, Sparkles } from "lucide-react";
 import { SiLinkedin, SiGithub, SiX, SiDribbble } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+declare const gsap: any;
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,26 @@ export function ContactSection() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    // Animate contact cards on scroll
+    gsap.utils.toArray('.contact-card').forEach((card: any) => {
+      gsap.fromTo(card, 
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,14 +45,19 @@ export function ContactSection() {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      projectType: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+    setIsSuccess(true);
+    
+    // Reset form after success animation
+    setTimeout(() => {
+      setFormData({
+        name: "",
+        email: "",
+        projectType: "",
+        message: "",
+      });
+      setIsSubmitting(false);
+      setIsSuccess(false);
+    }, 2000);
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -128,10 +155,24 @@ export function ContactSection() {
                 
                 <Button 
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-primary-blue to-navy-deep hover:from-navy-deep hover:to-primary-blue text-white py-4 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg"
+                  disabled={isSubmitting || isSuccess}
+                  className={`w-full py-4 rounded-lg font-medium transition-all transform hover:scale-105 shadow-lg ${
+                    isSuccess 
+                      ? 'bg-accent-green text-white' 
+                      : 'bg-gradient-to-r from-primary-blue to-navy-deep hover:from-navy-deep hover:to-primary-blue text-white'
+                  }`}
                 >
-                  {isSubmitting ? "Sending..." : (
+                  {isSuccess ? (
+                    <>
+                      <CheckCircle className="w-5 h-5 mr-2" />
+                      Message Sent!
+                    </>
+                  ) : isSubmitting ? (
+                    <>
+                      <Sparkles className="w-5 h-5 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
                     <>
                       <Send className="w-5 h-5 mr-2" />
                       Send Message
@@ -143,24 +184,24 @@ export function ContactSection() {
             
             {/* Contact Info */}
             <div className="space-y-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="contact-card text-center">
+                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Mail className="w-8 h-8 text-primary-blue" />
                 </div>
                 <h3 className="font-semibold text-navy-deep dark:text-white mb-2">Email</h3>
                 <p className="text-text-gray dark:text-gray-300">alex@portfolio.com</p>
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="contact-card text-center">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Phone className="w-8 h-8 text-accent-green" />
                 </div>
                 <h3 className="font-semibold text-navy-deep dark:text-white mb-2">Phone</h3>
                 <p className="text-text-gray dark:text-gray-300">+1 (555) 123-4567</p>
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="contact-card text-center">
+                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <MapPin className="w-8 h-8 text-purple-600" />
                 </div>
                 <h3 className="font-semibold text-navy-deep dark:text-white mb-2">Location</h3>
@@ -173,7 +214,7 @@ export function ContactSection() {
                   <a
                     key={social.name}
                     href={social.href}
-                    className={`w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:text-white transition-all transform hover:scale-110 ${social.color}`}
+                    className={`w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center hover:text-white transition-all transform hover:scale-110 shadow-lg hover:shadow-xl ${social.color}`}
                   >
                     <social.icon className="w-6 h-6" />
                   </a>

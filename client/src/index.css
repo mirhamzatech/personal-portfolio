@@ -78,11 +78,30 @@
     background: linear-gradient(135deg, var(--bg-light) 0%, hsl(209, 100%, 97%) 50%, var(--bg-light) 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gradient-mesh::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(0, 139, 249, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(54, 219, 159, 0.1) 0%, transparent 50%);
+    animation: meshMove 20s ease-in-out infinite;
   }
   
   .dark .gradient-mesh {
     background: linear-gradient(135deg, var(--background) 0%, hsl(215, 55%, 22%) 50%, var(--background) 100%);
     background-size: 400% 400%;
+  }
+  
+  .dark .gradient-mesh::before {
+    background: radial-gradient(circle at 20% 80%, rgba(0, 139, 249, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(54, 219, 159, 0.05) 0%, transparent 50%);
   }
   
   .floating {
@@ -91,16 +110,31 @@
   
   .glow-effect {
     filter: drop-shadow(0 0 20px rgba(54, 219, 159, 0.3));
+    transition: filter 0.3s ease;
+  }
+  
+  .glow-effect:hover {
+    filter: drop-shadow(0 0 30px rgba(54, 219, 159, 0.5));
   }
   
   .card-hover-overlay {
-    background: rgba(38, 57, 89, 0.8);
+    background: rgba(38, 57, 89, 0.9);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
   }
   
   .project-card:hover .card-hover-overlay {
     opacity: 1;
+  }
+  
+  .project-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
   }
   
   .scroll-indicator {
@@ -109,6 +143,7 @@
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
+    z-index: 10;
   }
   
   .scroll-indicator::after {
@@ -128,6 +163,65 @@
   
   .testimonial-slide.active {
     display: block;
+  }
+  
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .dark .glass-effect {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .tech-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .tech-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+  }
+  
+  .service-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .service-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .magnetic-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .magnetic-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 139, 249, 0.3);
+  }
+  
+  .typing-effect {
+    border-right: 2px solid var(--primary-blue);
+    animation: typing 4s steps(30) infinite, blink 1s infinite;
+  }
+  
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+    z-index: 9999;
+    transition: width 0.3s ease;
   }
 }
 
@@ -203,6 +297,13 @@
   100% { background-position: 0% 50%; }
 }
 
+@keyframes meshMove {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-20px) translateY(-10px); }
+  50% { transform: translateX(20px) translateY(10px); }
+  75% { transform: translateX(-10px) translateY(20px); }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
@@ -217,4 +318,34 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typing {
+  0%, 50% { border-right-color: var(--primary-blue); }
+  51%, 100% { border-right-color: transparent; }
+}
+
+@keyframes blink {
+  0%, 50% { border-right-color: var(--primary-blue); }
+  51%, 100% { border-right-color: transparent; }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
