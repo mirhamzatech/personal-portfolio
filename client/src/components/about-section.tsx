@@ -41,7 +41,7 @@ export function AboutSection() {
     gsap.utils.toArray(".stat-item").forEach((stat: any, index: number) => {
       gsap.fromTo(
         stat,
-        { opacity: 0, scale: 0.8 },
+        { opacity: 0, scale: 0.8 }, 
         {
           opacity: 1,
           scale: 1,
@@ -59,12 +59,12 @@ export function AboutSection() {
     // Tech stack hover effects with enhanced animations
     const techIcons = document.querySelectorAll(".tech-icon");
     techIcons.forEach((icon) => {
-      icon.addEventListener("mouseenter", function () {
+      icon.addEventListener("mouseenter", function (this: HTMLElement) {
         gsap.to(this, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" });
         this.classList.add("glow-effect");
       });
 
-      icon.addEventListener("mouseleave", function () {
+      icon.addEventListener("mouseleave", function (this: HTMLElement) {
         gsap.to(this, { scale: 1, duration: 0.3, ease: "back.out(1.7)" });
         this.classList.remove("glow-effect");
       });
@@ -93,8 +93,9 @@ export function AboutSection() {
     return () => {
       // Cleanup event listeners
       techIcons.forEach((icon) => {
-        icon.removeEventListener("mouseenter", () => {});
-        icon.removeEventListener("mouseleave", () => {});
+        const element = icon as HTMLElement;
+        element.removeEventListener("mouseenter", () => {});
+        element.removeEventListener("mouseleave", () => {});
       });
     };
   }, []);
