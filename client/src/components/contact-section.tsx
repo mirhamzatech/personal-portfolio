@@ -189,7 +189,7 @@ export function ContactSection() {
                   <Mail className="w-8 h-8 text-primary-blue" />
                 </div>
                 <h3 className="font-semibold text-navy-deep dark:text-white mb-2">Email</h3>
-                <p className="text-text-gray dark:text-gray-300">alex@portfolio.com</p>
+                <p className="text-text-gray dark:text-gray-300">jeehamza09@gmail.com</p>
               </div>
               
               <div className="contact-card text-center">
@@ -197,7 +197,7 @@ export function ContactSection() {
                   <Phone className="w-8 h-8 text-accent-green" />
                 </div>
                 <h3 className="font-semibold text-navy-deep dark:text-white mb-2">Phone</h3>
-                <p className="text-text-gray dark:text-gray-300">+1 (555) 123-4567</p>
+                <p className="text-text-gray dark:text-gray-300">+92 321 5268662</p>
               </div>
               
               <div className="contact-card text-center">
@@ -205,7 +205,7 @@ export function ContactSection() {
                   <MapPin className="w-8 h-8 text-purple-600" />
                 </div>
                 <h3 className="font-semibold text-navy-deep dark:text-white mb-2">Location</h3>
-                <p className="text-text-gray dark:text-gray-300">San Francisco, CA</p>
+                <p className="text-text-gray dark:text-gray-300">Lahore, Punjab, Pakistan</p>
               </div>
               
               {/* Social Links */}

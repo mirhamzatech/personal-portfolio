@@ -59,35 +59,35 @@ export function Footer() {
     { 
       name: "LinkedIn", 
       icon: SiLinkedin, 
-      href: "https://linkedin.com/in/alexdeveloper", 
+      href: "https://linkedin.com/in/mir_hamza", 
       color: "hover:bg-blue-600",
       bgColor: "bg-blue-500"
     },
     { 
       name: "GitHub", 
       icon: SiGithub, 
-      href: "https://github.com/alexdeveloper", 
+      href: "https://github.com/mir_hamza", 
       color: "hover:bg-gray-800",
       bgColor: "bg-gray-700"
     },
     { 
       name: "Twitter", 
       icon: SiX, 
-      href: "https://twitter.com/alexdeveloper", 
+      href: "https://twitter.com/mir_hamza", 
       color: "hover:bg-blue-400",
       bgColor: "bg-blue-500"
     },
     { 
       name: "Dribbble", 
       icon: SiDribbble, 
-      href: "https://dribbble.com/alexdeveloper", 
+      href: "https://dribbble.com/mir_hamza", 
       color: "hover:bg-pink-500",
       bgColor: "bg-pink-400"
     }
   ];
 
   const quickLinks = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "#" },
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Services", href: "#services" },
@@ -123,7 +123,7 @@ export function Footer() {
             <div className="space-y-6">
               <div>
                 <h3 className="font-pacifico text-3xl text-white mb-4">
-                  Alex Developer
+                  Mir Hamza
                 </h3>
                 <p className="text-gray-300 leading-relaxed">
                   Crafting digital experiences that blend creativity with cutting-edge technology. 
@@ -131,26 +131,33 @@ export function Footer() {
                 </p>
               </div>
               
-              {/* Contact Info */}
+              {/* Contact Info - Updated with clickable links */}
               <div className="space-y-3">
-                <div className="flex items-center space-x-3">
+                <a href="mailto:jeehamza09@gmail.com" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
                   <div className="w-8 h-8 bg-primary-blue/20 rounded-lg flex items-center justify-center">
                     <Mail className="w-4 h-4 text-primary-blue" />
                   </div>
-                  <span className="text-gray-300">alex@portfolio.com</span>
-                </div>
-                <div className="flex items-center space-x-3">
+                  <span className="text-gray-300">jeehamza09@gmail.com</span>
+                </a>
+                
+                <a href="tel:+923215268662" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
                   <div className="w-8 h-8 bg-accent-green/20 rounded-lg flex items-center justify-center">
                     <Phone className="w-4 h-4 text-accent-green" />
                   </div>
-                  <span className="text-gray-300">+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center space-x-3">
+                  <span className="text-gray-300">+92 321 526 8662</span>
+                </a>
+                
+                <a 
+                  href="https://maps.google.com/?q=Lahore,Punjab,Pakistan" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+                >
                   <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
                     <MapPin className="w-4 h-4 text-purple-400" />
                   </div>
-                  <span className="text-gray-300">San Francisco, CA</span>
-                </div>
+                  <span className="text-gray-300">Lahore, Punjab, Pakistan</span>
+                </a>
               </div>
             </div>
 
@@ -226,9 +233,9 @@ export function Footer() {
           {/* Bottom Bar */}
           <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2 text-gray-300">
-              <span>© {currentYear} Alex Developer. Made with</span>
+              <span>© {currentYear} Mir Hamza. Made with</span>
               <Heart className="w-4 h-4 text-red-500 animate-pulse" />
-              <span>in San Francisco</span>
+              <span>in Lahore, Punjab, Pakistan</span>
             </div>
             
             <div className="flex items-center space-x-6 text-gray-300">

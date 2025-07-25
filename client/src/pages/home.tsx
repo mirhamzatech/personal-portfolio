@@ -7,10 +7,12 @@ import { TestimonialsSection } from "@/components/testimonials-section";
 import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
 import { ParticleSystem } from "@/components/particle-system";
+import { LoadingAnimation } from "@/components/loading-animation";
 
 export default function Home() {
   return (
     <div className="min-h-screen relative">
+      <LoadingAnimation />
       <ParticleSystem />
       <Navigation />
       <HeroSection />

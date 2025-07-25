@@ -156,7 +156,7 @@ export function HeroSection() {
             id="hero-title"
             className="font-pacifico text-5xl md:text-6xl lg:text-7xl text-navy-deep dark:text-white mb-6"
           >
-            Hi, I'm Alex
+            Hi, I'm Mir Hamza CH.
           </h1>
           <p 
             id="hero-subtitle"
@@ -195,20 +195,44 @@ export function HeroSection() {
           <ChevronDown className="w-6 h-6 text-primary-blue animate-bounce" />
         </div>
         
-        {/* Enhanced floating geometric shapes */}
-        <div className="floating-shape absolute top-20 left-20 w-20 h-20 bg-accent-green/20 rounded-full blur-xl"></div>
-        <div className="floating-shape absolute bottom-40 right-32 w-32 h-32 bg-primary-blue/20 rounded-full blur-xl"></div>
-        <div className="floating-shape absolute top-1/3 right-20 w-16 h-16 bg-navy-deep/20 rounded-full blur-xl"></div>
-        
-        {/* Additional decorative elements */}
-        <div className="floating-shape absolute top-1/2 left-10 w-4 h-4 bg-accent-green/40 rounded-full">
-          <Star className="w-4 h-4 text-accent-green animate-pulse" />
-        </div>
-        <div className="floating-shape absolute bottom-32 left-1/4 w-6 h-6 bg-primary-blue/40 rounded-full">
-          <Sparkles className="w-6 h-6 text-primary-blue animate-pulse" />
-        </div>
-        <div className="floating-shape absolute top-40 right-1/4 w-5 h-5 bg-navy-deep/40 rounded-full">
-          <Zap className="w-5 h-5 text-navy-deep dark:text-white animate-pulse" />
+        {/* Advanced Floating Shapes & Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Morphing Blobs */}
+          <div className="floating-shape absolute top-10 left-10 w-32 h-32 bg-gradient-to-r from-primary-blue/30 to-accent-green/30 rounded-full opacity-40 animate-pulse blur-xl"></div>
+          <div className="floating-shape absolute top-20 right-20 w-24 h-24 bg-gradient-to-r from-accent-green/40 to-purple-500/40 rounded-full opacity-50 blur-lg" style={{ clipPath: 'polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%)' }}></div>
+          <div className="floating-shape absolute bottom-32 left-20 w-20 h-20 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-full opacity-35 blur-lg" style={{ clipPath: 'polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)' }}></div>
+          <div className="floating-shape absolute bottom-40 right-10 w-28 h-28 bg-gradient-to-r from-pink-500/25 to-primary-blue/25 rounded-full opacity-30 blur-xl"></div>
+          
+          {/* Geometric Shapes */}
+          <div className="floating-shape absolute top-60 left-1/4 w-16 h-16 bg-gradient-to-r from-primary-blue/20 to-accent-green/20 opacity-25 transform rotate-45 blur-sm"></div>
+          <div className="floating-shape absolute top-80 right-1/3 w-12 h-12 bg-gradient-to-r from-accent-green/30 to-purple-500/30 opacity-40 rounded-lg transform rotate-12 blur-sm"></div>
+          
+          {/* Animated Lines */}
+          <div className="floating-shape absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary-blue/30 to-transparent opacity-50"></div>
+          <div className="floating-shape absolute top-1/3 right-0 w-px h-full bg-gradient-to-b from-transparent via-accent-green/30 to-transparent opacity-40"></div>
+          
+          {/* Orbiting Elements */}
+          <div className="floating-shape absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-96 h-96 border border-primary-blue/10 rounded-full animate-spin" style={{ animationDuration: '60s' }}>
+              <div className="absolute top-0 left-1/2 w-3 h-3 bg-primary-blue/50 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute bottom-0 right-1/2 w-2 h-2 bg-accent-green/50 rounded-full transform translate-x-1/2 translate-y-1/2"></div>
+            </div>
+          </div>
+          
+          {/* Icon Elements */}
+          <div className="floating-shape absolute top-1/3 left-10 w-8 h-8 bg-accent-green/30 rounded-full flex items-center justify-center">
+            <Star className="w-4 h-4 text-accent-green animate-pulse" />
+          </div>
+          <div className="floating-shape absolute bottom-1/3 right-1/4 w-10 h-10 bg-primary-blue/30 rounded-full flex items-center justify-center">
+            <Sparkles className="w-5 h-5 text-primary-blue animate-pulse" />
+          </div>
+          <div className="floating-shape absolute top-2/3 left-1/3 w-6 h-6 bg-purple-500/30 rounded-full flex items-center justify-center">
+            <Zap className="w-3 h-3 text-purple-400 animate-pulse" />
+          </div>
+          
+          {/* Animated Gradient Orbs */}
+          <div className="floating-shape absolute top-1/4 right-1/4 w-40 h-40 bg-gradient-to-r from-primary-blue/10 to-accent-green/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="floating-shape absolute bottom-1/4 left-1/4 w-48 h-48 bg-gradient-to-r from-accent-green/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
       </section>
     </>

@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 import { Download, Award, Users, Coffee, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SiReact, SiJavascript, SiNodedotjs, SiPython, SiFigma, SiGit, SiTailwindcss, SiTypescript } from "react-icons/si";
+import {
+  SiHtml5,
+  SiCss3,
+  SiBootstrap,
+  SiTailwindcss,
+  SiReact,
+  SiWordpress,
+  SiShopify,
+  SiWix,
+} from "react-icons/si";
+import resumePdf from "./Mir-Hamza-Resume.pdf"; // Import the PDF file directly
 
 declare const gsap: any;
 
 const techStack = [
-  { name: "React", icon: SiReact, color: "text-blue-500", level: 95 },
-  { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500", level: 92 },
-  { name: "TypeScript", icon: SiTypescript, color: "text-blue-600", level: 88 },
-  { name: "Node.js", icon: SiNodedotjs, color: "text-green-600", level: 85 },
-  { name: "Tailwind", icon: SiTailwindcss, color: "text-cyan-500", level: 90 },
-  { name: "Python", icon: SiPython, color: "text-blue-500", level: 80 },
-  { name: "Figma", icon: SiFigma, color: "text-purple-500", level: 87 },
-  { name: "Git", icon: SiGit, color: "text-orange-500", level: 93 },
+  { name: "WordPress", icon: SiWordpress, color: "text-blue-700", level: 85 },
+  { name: "Shopify", icon: SiShopify, color: "text-green-600", level: 88 },
+  { name: "Wix", icon: SiWix, color: "text-blue-600", level: 80 },
+  { name: "HTML", icon: SiHtml5, color: "text-orange-500", level: 98 },
+  { name: "CSS", icon: SiCss3, color: "text-blue-500", level: 95 },
+  { name: "Bootstrap", icon: SiBootstrap, color: "text-purple-500", level: 90 },
+  { name: "Tailwind", icon: SiTailwindcss, color: "text-cyan-500", level: 92 },
+  { name: "React", icon: SiReact, color: "text-blue-400", level: 94 },
 ];
 
 const stats = [
@@ -28,63 +38,82 @@ export function AboutSection() {
 
   useEffect(() => {
     // Animate stats on scroll
-    gsap.utils.toArray('.stat-item').forEach((stat: any, index: number) => {
-      gsap.fromTo(stat, 
+    gsap.utils.toArray(".stat-item").forEach((stat: any, index: number) => {
+      gsap.fromTo(
+        stat,
         { opacity: 0, scale: 0.8 },
-        { 
-          opacity: 1, 
-          scale: 1, 
+        {
+          opacity: 1,
+          scale: 1,
           duration: 0.6,
           delay: index * 0.1,
           scrollTrigger: {
             trigger: stat,
             start: "top 80%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-    });
-
-    // Animate skill bars
-    gsap.utils.toArray('.skill-bar').forEach((bar: any, index: number) => {
-      gsap.fromTo(bar, 
-        { width: 0 },
-        { 
-          width: `${techStack[index].level}%`,
-          duration: 1.5,
-          ease: "power2.out",
-          delay: index * 0.1,
-          scrollTrigger: {
-            trigger: bar,
-            start: "top 80%",
             toggleActions: "play none none none",
-            onStart: () => setSkillsAnimated(true)
-          }
+          },
         }
       );
     });
 
     // Tech stack hover effects with enhanced animations
-    const techIcons = document.querySelectorAll('.tech-icon');
-    techIcons.forEach(icon => {
-      icon.addEventListener('mouseenter', function() {
-        gsap.to(this, { scale: 1.2, duration: 0.3, ease: "back.out(1.7)" });
-        this.classList.add('glow-effect');
+    const techIcons = document.querySelectorAll(".tech-icon");
+    techIcons.forEach((icon) => {
+      icon.addEventListener("mouseenter", function () {
+        gsap.to(this, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" });
+        this.classList.add("glow-effect");
       });
-      
-      icon.addEventListener('mouseleave', function() {
+
+      icon.addEventListener("mouseleave", function () {
         gsap.to(this, { scale: 1, duration: 0.3, ease: "back.out(1.7)" });
-        this.classList.remove('glow-effect');
+        this.classList.remove("glow-effect");
       });
     });
+
+    // Animate skill level indicators in tech icons
+    gsap.utils.toArray(".tech-icon").forEach((icon: any, index: number) => {
+      gsap.fromTo(
+        icon.querySelector(".skill-level-indicator"),
+        { width: 0 },
+        {
+          width: `${techStack[index].level}%`,
+          duration: 1.5,
+          ease: "power2.out",
+          delay: index * 0.1,
+          scrollTrigger: {
+            trigger: icon,
+            start: "top 80%",
+            toggleActions: "play none none none",
+            onStart: () => setSkillsAnimated(true),
+          },
+        }
+      );
+    });
+
+    return () => {
+      // Cleanup event listeners
+      techIcons.forEach((icon) => {
+        icon.removeEventListener("mouseenter", () => {});
+        icon.removeEventListener("mouseleave", () => {});
+      });
+    };
   }, []);
 
   const downloadResume = () => {
-    // Create a mock PDF download
-    const link = document.createElement('a');
-    link.href = '#';
-    link.download = 'alex-resume.pdf';
-    link.click();
+    try {
+      // Create a temporary anchor element
+      const link = document.createElement("a");
+      link.href = resumePdf;
+      link.download = "Mir-Hamza-Resume.pdf";
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error downloading resume:", error);
+      alert("Failed to download resume. Please try again later.");
+    }
   };
 
   return (
@@ -97,7 +126,10 @@ export function AboutSection() {
               About Me
             </h2>
             <p className="text-lg text-text-gray dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              I'm a passionate full-stack developer with 5+ years of experience creating digital experiences that combine aesthetic appeal with robust functionality. I specialize in React ecosystems and modern web technologies, always striving for pixel-perfect implementations.
+              I'm a passionate Website developer with 5+ years of experience
+              creating digital experiences that combine aesthetic appeal with
+              robust functionality. I specialize in modern web technologies and
+              CMS platforms, always striving for pixel-perfect implementations.
             </p>
           </div>
 
@@ -117,56 +149,50 @@ export function AboutSection() {
               </div>
             ))}
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Skills Section */}
-            <div>
-              <h3 className="font-pacifico text-2xl text-navy-deep dark:text-white mb-6">
-                Technical Skills
-              </h3>
-              <div className="space-y-6">
-                {techStack.map((tech, index) => (
-                  <div key={index} className="skill-item">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <tech.icon className={`text-2xl ${tech.color}`} />
-                        <span className="font-medium text-navy-deep dark:text-white">
-                          {tech.name}
-                        </span>
-                      </div>
-                      <span className="text-text-gray dark:text-gray-300 text-sm">
-                        {tech.level}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div 
-                        className={`skill-bar h-2 rounded-full bg-gradient-to-r from-primary-blue to-accent-green transition-all duration-300`}
-                        style={{ width: skillsAnimated ? `${tech.level}%` : '0%' }}
+
+          {/* Full-width Tech Stack Icons */}
+          <div className="w-full mb-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
+              {techStack.map((tech, index) => (
+                <div
+                  key={index}
+                  className="tech-icon group cursor-pointer text-center p-4"
+                >
+                  <div className="relative w-16 h-16 mx-auto mb-3">
+                    <div className="w-full h-full bg-gray-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-primary-blue/10 group-hover:to-accent-green/10 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-3">
+                      <tech.icon
+                        className={`text-3xl ${tech.color} group-hover:text-accent-green transition-all duration-300 group-hover:scale-125`}
                       />
                     </div>
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-blue/20 to-accent-green/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
+                    {/* Floating particles */}
+                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-accent-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+                    <div
+                      className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-primary-blue rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"
+                      style={{ animationDelay: "0.5s" }}
+                    ></div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Tech Stack Icons */}
-            <div className="grid grid-cols-3 md:grid-cols-4 gap-6">
-              {techStack.map((tech, index) => (
-                <div key={index} className="tech-icon group cursor-pointer text-center">
-                  <div className="w-16 h-16 bg-gray-50 dark:bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:bg-bg-light dark:group-hover:bg-gray-700 transition-all duration-300">
-                    <tech.icon className={`text-3xl ${tech.color} group-hover:text-accent-green transition-all duration-300`} />
-                  </div>
-                  <p className="text-sm group-hover:text-accent-green transition-colors">
+                  <p className="text-sm group-hover:text-accent-green transition-colors font-medium">
                     {tech.name}
                   </p>
+                  {/* Skill level indicator */}
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1 mt-2 overflow-hidden">
+                    <div
+                      className="skill-level-indicator h-full bg-gradient-to-r from-primary-blue to-accent-green transition-all duration-1000"
+                      style={{
+                        width: skillsAnimated ? `${tech.level}%` : "0%",
+                      }}
+                    ></div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-          
+
           {/* Download Resume Button */}
           <div className="text-center mt-12">
-            <Button 
+            <Button
               onClick={downloadResume}
               className="magnetic-button bg-dark-navy hover:bg-navy-deep dark:bg-white dark:hover:bg-gray-200 dark:text-dark-navy text-white px-8 py-4 rounded-full font-medium shadow-lg group"
             >

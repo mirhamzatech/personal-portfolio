@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Code, Smartphone, Palette, Zap, Globe, Database, Layers, Settings } from "lucide-react";
+import { Code, ShoppingCart, LayoutTemplate, Cpu, Zap, Search, Image, Headphones } from "lucide-react";
 
 declare const gsap: any;
 
@@ -56,58 +56,58 @@ export function ServicesSection() {
   const services = [
     {
       icon: Code,
-      title: "Web Development",
-      description: "Modern, responsive websites built with the latest technologies and best practices for optimal performance.",
-      features: ["React/Next.js", "TypeScript", "Tailwind CSS", "API Integration"],
+      title: "Wordpress Development",
+      description: "Custom WordPress websites with tailored themes, plugins, and functionality to meet your specific needs.",
+      features: ["Custom Themes", "Plugin Development", "WooCommerce", "Security"],
       gradient: "from-blue-500 to-purple-600"
     },
     {
-      icon: Smartphone,
-      title: "Mobile Apps",
-      description: "Cross-platform mobile applications that provide seamless user experiences across all devices.",
-      features: ["React Native", "Flutter", "iOS/Android", "PWA"],
+      icon: ShoppingCart,
+      title: "Shopify Development",
+      description: "High-converting Shopify stores with custom features and seamless user experiences.",
+      features: ["Custom Themes", "App Integration", "Checkout Optimization", "SEO"],
       gradient: "from-green-500 to-blue-500"
     },
     {
-      icon: Palette,
-      title: "UI/UX Design",
-      description: "Beautiful, intuitive interfaces designed with user experience and accessibility in mind.",
-      features: ["Figma", "Prototyping", "User Research", "Design Systems"],
+      icon: LayoutTemplate,
+      title: "Wix Development",
+      description: "Professional Wix websites with custom designs and advanced functionality.",
+      features: ["Custom Designs", "Velo Development", "Database Integration", "E-commerce"],
       gradient: "from-purple-500 to-pink-600"
     },
     {
-      icon: Database,
-      title: "Backend Development",
-      description: "Robust server-side solutions with scalable architectures and secure data management.",
-      features: ["Node.js", "PostgreSQL", "API Design", "Cloud Deployment"],
+      icon: Cpu,
+      title: "Full Stack Development",
+      description: "Complete web applications with both frontend and backend development for comprehensive solutions.",
+      features: ["React/Next.js", "Node.js", "API Development", "Database Design"],
       gradient: "from-orange-500 to-red-600"
-    },
-    {
-      icon: Globe,
-      title: "SEO Optimization",
-      description: "Comprehensive SEO strategies to improve your website's visibility and search rankings.",
-      features: ["Technical SEO", "Content Strategy", "Performance", "Analytics"],
-      gradient: "from-teal-500 to-green-600"
     },
     {
       icon: Zap,
       title: "Performance Optimization",
-      description: "Speed up your applications with advanced optimization techniques and best practices.",
-      features: ["Core Web Vitals", "Caching", "Code Splitting", "CDN Setup"],
+      description: "Speed up your website or application with advanced optimization techniques.",
+      features: ["Load Time Reduction", "Code Optimization", "Caching", "CDN Setup"],
+      gradient: "from-teal-500 to-green-600"
+    },
+    {
+      icon: Search,
+      title: "SEO Optimization",
+      description: "Improve your search rankings and online visibility with comprehensive SEO strategies.",
+      features: ["Keyword Research", "On-Page SEO", "Technical SEO", "Analytics"],
       gradient: "from-yellow-500 to-orange-600"
     },
     {
-      icon: Layers,
-      title: "Full-Stack Solutions",
-      description: "Complete end-to-end development services from concept to deployment and maintenance.",
-      features: ["Architecture", "DevOps", "CI/CD", "Monitoring"],
+      icon: Image,
+      title: "Adobe Photoshop & UI/UX Design",
+      description: "Beautiful designs and user experiences crafted with professional tools and expertise.",
+      features: ["Web Design", "Mobile Design", "Wireframing", "Prototyping"],
       gradient: "from-indigo-500 to-blue-600"
     },
     {
-      icon: Settings,
+      icon: Headphones,
       title: "Consulting & Support",
-      description: "Expert technical guidance and ongoing support to help your projects succeed.",
-      features: ["Code Review", "Tech Stack", "Mentoring", "Maintenance"],
+      description: "Expert guidance and ongoing support to help your digital projects succeed.",
+      features: ["Technical Consulting", "Maintenance", "Training", "Troubleshooting"],
       gradient: "from-pink-500 to-purple-600"
     }
   ];
@@ -193,7 +193,7 @@ export function ServicesSection() {
             </span>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-gradient-to-r from-primary-blue to-navy-deep text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-[#0f3567] text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               Get Started
             </button>

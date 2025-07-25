@@ -61,7 +61,7 @@ export function Navigation() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <div className="font-pacifico text-2xl text-navy-deep dark:text-white hover:text-primary-blue transition-colors cursor-pointer">
-            Portfolio
+            Hamza
           </div>
           
           {/* Desktop Navigation */}
