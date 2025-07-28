@@ -152,6 +152,9 @@ export function AboutSection() {
           </div>
 
           {/* Full-width Tech Stack Icons */}
+           <h2 className="font-pacifico text-4xl text-navy-deep dark:text-white mb-16 text-center">
+              Technical Skills
+            </h2>
           <div className="w-full mb-12">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-4">
               {techStack.map((tech, index) => (
